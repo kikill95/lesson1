@@ -59,10 +59,10 @@ class MyArray
   end
 
   def before_min
-    @array.each_with_index.select { |ind| ind[1] < @array.rindex(@array.min) }.map { |el| el[0] }
+    @array.take(@array.index(@array.min))
   end
 
   def three_smallest
-    @array.sort.shift(3)
+    @array.sort.take(3)
   end
 end

@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/AbcSize
 require 'date'
 class Lesson1
   def sum(val = 0)
@@ -7,12 +8,13 @@ class Lesson1
   end
 
   def age(birthday)
-    if birthday
-      days = (Date.today - Date.strptime(birthday.tr('/', ''), '%d%m%Y')).to_i
-      (days / 365).to_s + ' years or ' + days.to_s + ' days or ' + (days / 24).to_s + ' hours or ' + (days / 24 / 60).to_s + ' minutes or ' + (days / 24 / 60 / 60).to_s + ' seconds'
-    else
-      'Invalid Date Format'
-    end
+    return 'Invalid Date Format' if birthday.to_s.empty?
+    days = (Date.today - Date.strptime(birthday.tr('/', ''), '%d%m%Y')).to_i
+    (days / 365).to_s + ' years or ' + \
+      days.to_s + ' days or ' + \
+      (days / 24).to_s + ' hours or ' + \
+      (days / 24 / 60).to_s + ' minutes or ' + \
+      (days / 24 / 60 / 60).to_s + ' seconds'
   end
 
   def name
